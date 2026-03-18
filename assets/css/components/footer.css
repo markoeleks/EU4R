@@ -1,0 +1,195 @@
+/* ============================================================
+   FOOTER COMPONENT
+   ============================================================ */
+
+.footer {
+  background-color : var(--color-bg-navy);
+  color            : var(--color-text-white);
+  padding-top      : var(--space-16);
+}
+
+/* Row 1 — branding + description + newsletter */
+.footer__top {
+  display               : grid;
+  grid-template-columns : 1fr 1fr;
+  gap                   : var(--space-16);
+  padding-bottom        : var(--space-12);
+  border-bottom         : 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer__brand {
+  display     : flex;
+  align-items : flex-start;
+  gap         : var(--space-4);
+}
+
+.footer__logo-mark {
+  width            : 48px;
+  height           : 48px;
+  border-radius    : var(--radius-md);
+  background-color : var(--color-yellow);
+  display          : flex;
+  align-items      : center;
+  justify-content  : center;
+  font-family      : var(--font-heading);
+  font-weight      : var(--fw-black);
+  font-size        : var(--text-body);
+  color            : var(--color-navy);
+  flex-shrink      : 0;
+  letter-spacing   : -0.5px;
+}
+
+.footer__brand-name {
+  font-family : var(--font-heading);
+  font-weight : var(--fw-black);
+  font-size   : var(--text-body-lg);
+  color       : var(--color-text-white);
+  line-height : 1.2;
+}
+
+.footer__brand-tagline {
+  font-size  : var(--text-xs);
+  color      : rgba(255, 255, 255, 0.6);
+  font-weight: var(--fw-medium);
+  margin-top : var(--space-1);
+  line-height: var(--lh-normal);
+  max-width  : 360px;
+  display    : block;
+}
+
+.footer__newsletter-label {
+  font-family    : var(--font-heading);
+  font-size      : var(--text-sm);
+  font-weight    : var(--fw-bold);
+  letter-spacing : var(--ls-wide);
+  text-transform : uppercase;
+  margin-bottom  : var(--space-3);
+  color          : var(--color-text-white);
+  display        : block;
+}
+
+.footer__newsletter-hint {
+  font-size   : var(--text-xs);
+  color       : rgba(255, 255, 255, 0.5);
+  margin-top  : var(--space-3);
+}
+
+/* Row 2 — link columns */
+.footer__links {
+  display               : grid;
+  grid-template-columns : repeat(4, 1fr);
+  gap                   : var(--space-8);
+  padding               : var(--space-12) 0;
+  border-bottom         : 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer__col-title {
+  font-family    : var(--font-heading);
+  font-size      : var(--text-xs);
+  font-weight    : var(--fw-bold);
+  letter-spacing : var(--ls-wider);
+  text-transform : uppercase;
+  color          : var(--color-yellow);
+  margin-bottom  : var(--space-5);
+  display        : block;
+}
+
+.footer__link-list {
+  list-style : none;
+  margin     : 0;
+  padding    : 0;
+  display    : flex;
+  flex-direction: column;
+  gap        : var(--space-3);
+}
+
+.footer__link {
+  font-size       : var(--text-sm);
+  color           : rgba(255, 255, 255, 0.7);
+  text-decoration : none;
+  transition      : color var(--transition-fast);
+  line-height     : var(--lh-snug);
+}
+
+.footer__link:hover {
+  color : var(--color-text-white);
+}
+
+/* Row 3 — legal bar */
+.footer__bottom {
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  gap             : var(--space-4);
+  padding         : var(--space-6) 0;
+  flex-wrap       : wrap;
+}
+
+.footer__copy {
+  font-size  : var(--text-xs);
+  color      : rgba(255, 255, 255, 0.5);
+  line-height: var(--lh-normal);
+}
+
+.footer__legal-links {
+  display : flex;
+  gap     : var(--space-5);
+}
+
+.footer__legal-link {
+  font-size       : var(--text-xs);
+  color           : rgba(255, 255, 255, 0.5);
+  text-decoration : none;
+  transition      : color var(--transition-fast);
+}
+
+.footer__legal-link:hover {
+  color : var(--color-text-white);
+}
+
+/* EU flag + funding note */
+.footer__eu-note {
+  display     : flex;
+  align-items : center;
+  gap         : var(--space-3);
+  font-size   : var(--text-xs);
+  color       : rgba(255, 255, 255, 0.5);
+  margin-top  : var(--space-6);
+  padding-top : var(--space-6);
+  border-top  : 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer__eu-flag {
+  font-size : 1.5rem;
+  line-height: 1;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .footer__links {
+    grid-template-columns : repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer__top {
+    grid-template-columns : 1fr;
+    gap                   : var(--space-10);
+  }
+
+  .footer__links {
+    grid-template-columns : repeat(2, 1fr);
+    gap                   : var(--space-6);
+  }
+
+  .footer__bottom {
+    flex-direction : column;
+    text-align     : center;
+  }
+}
+
+@media (max-width: 375px) {
+  .footer__links {
+    grid-template-columns : 1fr;
+  }
+}

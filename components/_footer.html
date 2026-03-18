@@ -1,0 +1,136 @@
+<!-- ============================================================
+     FOOTER COMPONENT
+     Three-row layout: brand + newsletter / links / legal
+     ============================================================ -->
+<footer class="footer" role="contentinfo" id="site-footer">
+  <div class="container">
+
+    <!-- Row 1: Brand + Newsletter -->
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand">
+          <div class="footer__logo-mark" aria-hidden="true">EU4R</div>
+          <div>
+            <div class="footer__brand-name">EU4Reconstruction</div>
+            <span class="footer__brand-tagline">
+              Rebuilding communities across Ukraine through European Union partnerships, technical expertise, and targeted funding.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="footer__newsletter-label" id="newsletter-label">Stay Informed</span>
+        <p style="font-size: var(--text-sm); color: rgba(255,255,255,0.6); margin-bottom: var(--space-5); line-height: var(--lh-relaxed);">
+          Subscribe for programme updates, funding announcements, and project highlights.
+        </p>
+        <form class="newsletter-form" aria-labelledby="newsletter-label" novalidate>
+          <label for="footer-email" class="sr-only">Email address</label>
+          <input
+            type="email"
+            id="footer-email"
+            name="email"
+            class="form-input newsletter-form__input"
+            placeholder="Your email address"
+            autocomplete="email"
+            required
+            aria-required="true"
+          >
+          <button type="submit" class="btn btn--yellow btn--sm">Subscribe</button>
+        </form>
+        <p class="footer__newsletter-hint">No spam. Unsubscribe at any time.</p>
+      </div>
+    </div>
+
+    <!-- Row 2: Link columns -->
+    <div class="footer__links" role="navigation" aria-label="Footer navigation">
+
+      <div>
+        <span class="footer__col-title">Programme</span>
+        <ul class="footer__link-list" role="list">
+          <li><a href="/about.html" class="footer__link">About EU4R</a></li>
+          <li><a href="/about.html#objectives" class="footer__link">Objectives</a></li>
+          <li><a href="/about.html#streams" class="footer__link">Funding Streams</a></li>
+          <li><a href="/about.html#governance" class="footer__link">Governance</a></li>
+          <li><a href="/about.html#team" class="footer__link">Team</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <span class="footer__col-title">Funding</span>
+        <ul class="footer__link-list" role="list">
+          <li><a href="/call-for-proposals/index.html" class="footer__link">Open Calls</a></li>
+          <li><a href="/call-for-proposals/index.html#eligibility" class="footer__link">Eligibility</a></li>
+          <li><a href="/call-for-proposals/index.html#how-to-apply" class="footer__link">How to Apply</a></li>
+          <li><a href="/docs/grant-guidelines.pdf" class="footer__link">Grant Guidelines</a></li>
+          <li><a href="/docs/faqs.pdf" class="footer__link">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <span class="footer__col-title">Projects</span>
+        <ul class="footer__link-list" role="list">
+          <li><a href="/reconstruction-works/index.html" class="footer__link">All Works</a></li>
+          <li><a href="/reconstruction-works/index.html?sector=housing" class="footer__link">Housing</a></li>
+          <li><a href="/reconstruction-works/index.html?sector=infrastructure" class="footer__link">Infrastructure</a></li>
+          <li><a href="/reconstruction-works/index.html?sector=energy" class="footer__link">Energy</a></li>
+          <li><a href="/partners.html" class="footer__link">Our Partners</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <span class="footer__col-title">Resources</span>
+        <ul class="footer__link-list" role="list">
+          <li><a href="/news/index.html" class="footer__link">News &amp; Events</a></li>
+          <li><a href="/contact.html" class="footer__link">Contact</a></li>
+          <li><a href="/search.html" class="footer__link">Search</a></li>
+          <li><a href="/docs/" class="footer__link">Documents</a></li>
+          <li><a href="/accessibility.html" class="footer__link">Accessibility</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Row 3: Legal + EU note -->
+    <div class="footer__bottom">
+      <p class="footer__copy">
+        &copy; <span id="footer-year">2025</span> EU4Reconstruction Programme. All rights reserved.
+      </p>
+      <nav class="footer__legal-links" aria-label="Legal links">
+        <a href="/privacy-policy.html" class="footer__legal-link">Privacy Policy</a>
+        <a href="/cookie-policy.html" class="footer__legal-link">Cookie Policy</a>
+        <a href="/accessibility.html" class="footer__legal-link">Accessibility Statement</a>
+      </nav>
+    </div>
+
+    <div class="footer__eu-note">
+      <span class="footer__eu-flag" aria-hidden="true">🇪🇺</span>
+      <p>
+        This programme is funded by the European Union. Co-funded by the European Union under the Ukraine Facility 2024–2027.
+        Views and opinions expressed are those of the programme partners and do not necessarily reflect those of the European Union or the European Commission.
+      </p>
+    </div>
+
+  </div><!-- /.container -->
+
+  <!-- Cookie banner -->
+  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie consent" hidden>
+    <div class="container">
+      <div class="cookie-banner__inner">
+        <div class="cookie-banner__text">
+          <strong>We use cookies</strong> to improve your experience and analyse site usage.
+          Read our <a href="/cookie-policy.html">Cookie Policy</a> for more information.
+        </div>
+        <div class="cookie-banner__actions">
+          <button class="btn btn--sm btn--outline" id="cookie-decline">Decline non-essential</button>
+          <button class="btn btn--sm btn--primary" id="cookie-accept">Accept all</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+</script>

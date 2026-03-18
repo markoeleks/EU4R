@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EU4Reconstruction — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────────── */
+:root {
+  --navy          : #1B2D6E;
+  --navy-dark     : #141F52;
+  --navy-light    : #2A3F8F;
+  --yellow        : #F5C318;
+  --yellow-dark   : #D9A90A;
+  --yellow-light  : #FEE27A;
+  --blue-bright   : #00A3D8;
+  --blue-dark     : #0081B0;
+  --bg-light-blue : #C4E8F5;
+  --bg-gray       : #EEEEEE;
+  --bg-white      : #FFFFFF;
+  --text-muted    : #5A6A8A;
+  --border-light  : #C4D4E8;
+  --partner-bar   : #1575B5;
+  --success       : #2E7D32;
+  --error         : #C62828;
+
+  --radius-sm   : 4px;
+  --radius-md   : 8px;
+  --radius-lg   : 12px;
+  --radius-pill : 9999px;
+}
+
+/* ── RESET ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #F4F6FA;
+  color: var(--navy);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ── PAGE SHELL ──────────────────────────────────── */
+.page { max-width: 1280px; margin: 0 auto; padding: 48px 32px 80px; }
+
+/* ── COVER ───────────────────────────────────────── */
+.cover {
+  background: var(--navy);
+  border-radius: var(--radius-lg);
+  padding: 48px 56px;
+  margin-bottom: 48px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  border: 60px solid rgba(245,195,24,.12);
+  pointer-events: none;
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; right: 100px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(0,163,216,.12);
+  pointer-events: none;
+}
+.cover-left { position: relative; z-index: 1; }
+.cover-logo {
+  display: flex; align-items: baseline; gap: 2px;
+  margin-bottom: 12px;
+}
+.logo-eu   { font-size: 52px; font-weight: 900; color: #fff; letter-spacing: -2px; }
+.logo-4    { font-size: 52px; font-weight: 900; color: var(--yellow); letter-spacing: -2px; }
+.logo-r    { font-size: 52px; font-weight: 900; color: var(--blue-bright); letter-spacing: -2px; }
+.cover-sub { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 20px; }
+.cover-title { font-size: 32px; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: -.5px; line-height: 1.1; }
+.cover-right { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; position: relative; z-index: 1; }
+.cover-meta { font-size: 12px; color: rgba(255,255,255,.45); text-align: right; }
+.cover-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff;
+}
+.cover-badge span { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); display: inline-block; }
+
+/* ── SECTION WRAPPER ─────────────────────────────── */
+.sg-section { margin-bottom: 48px; }
+.sg-section-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+}
+.sg-section-number {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--navy); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; flex-shrink: 0;
+}
+.sg-section-title { font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: -.3px; }
+.sg-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(27,45,110,.07);
+}
+.sg-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--text-muted);
+  margin-top: 8px;
+}
+.sg-value {
+  font-size: 11px; font-weight: 600; font-family: 'Courier New', monospace;
+  color: var(--navy-light); margin-top: 2px;
+}
+
+/* ── COLOURS ─────────────────────────────────────── */
+.color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+.color-swatch {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.swatch-block { height: 80px; width: 100%; }
+.swatch-info { padding: 10px 12px; background: #fff; }
+.swatch-name { font-size: 12px; font-weight: 700; color: var(--navy); }
+.swatch-hex  { font-size: 11px; font-family: 'Courier New', monospace; color: var(--text-muted); }
+.swatch-use  { font-size: 10px; color: #8898AA; margin-top: 3px; line-height: 1.4; }
+
+/* divider inside colour section */
+.color-group-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text-muted);
+  padding: 20px 0 10px;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 16px;
+}
+.color-group-label:first-child { padding-top: 0; }
+
+/* ── TYPOGRAPHY ──────────────────────────────────── */
+.type-rows { display: flex; flex-direction: column; gap: 0; }
+.type-row {
+  display: grid; grid-template-columns: 100px 1fr 140px;
+  align-items: baseline; gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.type-row:last-child { border-bottom: none; }
+.type-meta { font-size: 11px; font-family: 'Courier New', monospace; color: var(--text-muted); line-height: 1.5; }
+.type-spec { font-size: 11px; color: #8898AA; text-align: right; line-height: 1.5; }
+
+/* individual type styles */
+.t-display { font-size: 48px; font-weight: 900; line-height: 1.1; text-transform: uppercase; letter-spacing: -.02em; color: var(--navy); }
+.t-h1      { font-size: 36px; font-weight: 800; line-height: 1.1; text-transform: uppercase; letter-spacing: -.01em; color: var(--navy); }
+.t-h2      { font-size: 28px; font-weight: 800; line-height: 1.15; text-transform: uppercase; color: var(--navy); }
+.t-h3      { font-size: 22px; font-weight: 700; line-height: 1.2; color: var(--navy); }
+.t-h4      { font-size: 18px; font-weight: 600; line-height: 1.3; color: var(--navy); }
+.t-body-lg { font-size: 16px; font-weight: 400; line-height: 1.6; color: var(--navy); }
+.t-body    { font-size: 15px; font-weight: 400; line-height: 1.6; color: var(--navy); }
+.t-sm      { font-size: 14px; font-weight: 400; line-height: 1.5; color: var(--text-muted); }
+.t-xs      { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+
+/* ── SPACING ─────────────────────────────────────── */
+.spacing-grid { display: flex; flex-direction: column; gap: 12px; }
+.spacing-row { display: flex; align-items: center; gap: 16px; }
+.spacing-bar { background: var(--blue-bright); border-radius: 3px; height: 20px; flex-shrink: 0; }
+.spacing-info { font-size: 12px; }
+.spacing-token { font-family: 'Courier New', monospace; font-weight: 700; color: var(--navy); }
+.spacing-px { color: var(--text-muted); margin-left: 8px; }
+
+/* ── BADGES ──────────────────────────────────────── */
+.badge-grid { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 18px; border-radius: var(--radius-pill);
+  font-size: 12px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; white-space: nowrap; line-height: 1;
+  border: 2px solid transparent;
+}
+.badge--yellow       { background: var(--yellow); color: var(--navy); }
+.badge--outline      { background: transparent; color: var(--navy); border-color: var(--navy); }
+.badge--outline-white{ background: transparent; color: #fff; border-color: #fff; }
+.badge--navy         { background: var(--navy); color: #fff; }
+.badge--blue         { background: var(--blue-bright); color: #fff; }
+.badge--stream-1     { background: transparent; color: var(--navy); border-color: var(--navy); }
+.badge--stream-2     { background: var(--yellow); color: var(--navy); }
+
+.badge-dark-bg {
+  background: var(--navy); border-radius: var(--radius-md);
+  padding: 16px 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+}
+
+/* ── BUTTONS ─────────────────────────────────────── */
+.btn-grid { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 12px 24px; border-radius: var(--radius-pill);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; text-decoration: none; cursor: pointer;
+  border: 2px solid transparent; line-height: 1;
+  transition: all .15s ease;
+}
+.btn--primary  { background: var(--navy); color: #fff; border-color: var(--navy); }
+.btn--accent   { background: var(--yellow); color: var(--navy); border-color: var(--yellow); }
+.btn--outline  { background: transparent; color: var(--navy); border-color: var(--navy); }
+.btn--ghost    { background: transparent; color: #fff; border-color: #fff; }
+.btn--blue     { background: var(--blue-bright); color: #fff; border-color: var(--blue-bright); }
+.btn--sm { padding: 8px 16px; font-size: 11px; }
+.btn--lg { padding: 16px 32px; font-size: 15px; }
+
+.btn-dark-bg {
+  background: var(--navy); border-radius: var(--radius-md);
+  padding: 16px 20px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+}
+
+/* ── CARDS ───────────────────────────────────────── */
+.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.card {
+  background: #fff; border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px rgba(27,45,110,.10);
+  overflow: hidden;
+}
+.card--light-blue { background: var(--bg-light-blue); box-shadow: none; }
+.card--dark       { background: var(--navy); }
+
+.card__img {
+  width: 100%; height: 140px; object-fit: cover;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.card__img--yellow { background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%); }
+.card__img--blue   { background: linear-gradient(135deg, var(--blue-bright) 0%, var(--blue-dark) 100%); }
+
+.card__body { padding: 20px; }
+.card__meta { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-bright); margin-bottom: 6px; }
+.card__title { font-size: 15px; font-weight: 800; text-transform: uppercase; color: var(--navy); line-height: 1.2; margin-bottom: 8px; }
+.card__excerpt { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+.card--dark .card__title, .card--dark .card__excerpt, .card--dark .card__meta { color: #fff; }
+.card--dark .card__meta { color: var(--yellow); }
+.card__footer { padding: 12px 20px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
+.card--dark .card__footer { border-color: rgba(255,255,255,.12); }
+
+/* ── STREAM SECTIONS ─────────────────────────────── */
+.stream-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.stream-block { border-radius: var(--radius-md); padding: 24px; background: var(--bg-light-blue); }
+.stream-block--2 { background: #FFFBEC; }
+.stream-accent { width: 100%; height: 4px; border-radius: 2px; margin-bottom: 16px; }
+.stream-accent--1 { background: var(--navy); }
+.stream-accent--2 { background: var(--yellow); }
+.stream-name { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.stream-title { font-size: 17px; font-weight: 800; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; }
+.stream-orgs { font-size: 12px; color: var(--text-muted); }
+
+/* ── FORM ────────────────────────────────────────── */
+.form-demo { max-width: 460px; display: flex; flex-direction: column; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
+.form-input, .form-textarea {
+  padding: 10px 14px; font-family: 'Montserrat', sans-serif; font-size: 13px;
+  color: var(--navy); background: #fff;
+  border: 2px solid var(--border-light); border-radius: var(--radius-md);
+  outline: none;
+}
+.form-input.focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(27,45,110,.12); }
+.form-input.error { border-color: var(--error); }
+.form-textarea { resize: none; height: 90px; }
+.form-error { font-size: 11px; color: var(--error); font-weight: 600; }
+.form-success {
+  padding: 14px 18px; background: #E8F5E9; border-radius: var(--radius-md);
+  border-left: 4px solid var(--success);
+  font-size: 13px; font-weight: 600; color: var(--success);
+}
+
+/* ── NAVIGATION ──────────────────────────────────── */
+.nav-demo {
+  background: #fff; border-radius: var(--radius-md);
+  border-bottom: 3px solid var(--yellow);
+  padding: 14px 24px;
+  display: flex; align-items: center; gap: 32px;
+  box-shadow: 0 2px 8px rgba(27,45,110,.08);
+}
+.nav-logo { display: flex; align-items: baseline; gap: 1px; }
+.nav-logo span:nth-child(1) { font-size: 22px; font-weight: 900; color: var(--navy); letter-spacing: -1px; }
+.nav-logo span:nth-child(2) { font-size: 22px; font-weight: 900; color: var(--yellow); letter-spacing: -1px; }
+.nav-logo span:nth-child(3) { font-size: 22px; font-weight: 900; color: var(--blue-bright); letter-spacing: -1px; }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-link { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; padding-bottom: 2px; border-bottom: 2px solid transparent; }
+.nav-link.active { color: var(--navy); border-color: var(--yellow); }
+.nav-util { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.lang { display: flex; gap: 2px; }
+.lang-btn { padding: 4px 8px; border: none; background: transparent; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; border-radius: 4px; cursor: pointer; color: var(--text-muted); }
+.lang-btn.active { background: var(--navy); color: #fff; }
+
+/* ── FOOTER ──────────────────────────────────────── */
+.footer-demo {
+  background: var(--navy); border-radius: var(--radius-md);
+  padding: 32px; color: #fff;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--yellow); margin-bottom: 12px; }
+.footer-link { display: block; font-size: 12px; color: rgba(255,255,255,.6); text-decoration: none; margin-bottom: 6px; }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; }
+.footer-copy { font-size: 11px; color: rgba(255,255,255,.35); }
+.footer-social { display: flex; gap: 8px; }
+.social-btn {
+  width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.08); font-size: 13px; cursor: pointer;
+}
+.footer-logo { display: flex; align-items: baseline; gap: 1px; margin-bottom: 10px; }
+.footer-logo span:nth-child(1) { font-size: 26px; font-weight: 900; color: #fff; letter-spacing: -1px; }
+.footer-logo span:nth-child(2) { font-size: 26px; font-weight: 900; color: var(--yellow); letter-spacing: -1px; }
+.footer-logo span:nth-child(3) { font-size: 26px; font-weight: 900; color: var(--blue-bright); letter-spacing: -1px; }
+.footer-tagline { font-size: 11px; color: rgba(255,255,255,.45); line-height: 1.5; }
+
+/* ── COOKIE BANNER ───────────────────────────────── */
+.cookie-demo {
+  background: var(--navy); border-radius: var(--radius-lg);
+  padding: 20px 24px; display: flex; align-items: flex-start; gap: 24px;
+  box-shadow: 0 8px 24px rgba(27,45,110,.2);
+}
+.cookie-icon { font-size: 28px; flex-shrink: 0; }
+.cookie-text { font-size: 12px; color: rgba(255,255,255,.8); line-height: 1.6; flex: 1; }
+.cookie-text strong { color: #fff; }
+.cookie-actions { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+
+/* ── SEARCH RESULT ───────────────────────────────── */
+.search-results { display: flex; flex-direction: column; }
+.search-result { padding: 16px 0; border-bottom: 1px solid var(--border-light); }
+.search-result:last-child { border-bottom: none; }
+.sr-type  { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-bright); margin-bottom: 3px; }
+.sr-title { font-size: 16px; font-weight: 700; color: var(--navy); text-decoration: underline; text-underline-offset: 2px; margin-bottom: 3px; cursor: pointer; }
+.sr-url   { font-size: 11px; color: #2E7D32; margin-bottom: 4px; }
+.sr-excerpt { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.sr-excerpt mark { background: var(--yellow-light); color: var(--navy); padding: 0 2px; border-radius: 2px; }
+
+/* ── ICONS ROW ───────────────────────────────────── */
+.icon-box {
+  width: 52px; height: 52px; border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.icon-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ── PARTNER STRIP ───────────────────────────────── */
+.partner-strip {
+  background: #fff; border-radius: var(--radius-md);
+  border-top: 4px solid var(--partner-bar); padding: 14px 20px;
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+}
+.partner-logo {
+  height: 28px; display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--text-muted); border: 1px solid var(--border-light); border-radius: 4px;
+  padding: 4px 10px; white-space: nowrap;
+}
+
+/* ── CFP STATES ──────────────────────────────────── */
+.cfp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.cfp-active {
+  background: var(--bg-light-blue); border-radius: var(--radius-md); padding: 24px;
+}
+.cfp-empty-demo {
+  background: var(--bg-gray); border-radius: var(--radius-md); padding: 32px;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px;
+}
+.cfp-state-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+.cfp-deadline { display: flex; align-items: center; gap: 8px; margin: 12px 0; }
+.cfp-deadline-icon { font-size: 20px; }
+.cfp-deadline-text { font-size: 16px; font-weight: 800; text-transform: uppercase; color: var(--navy); }
+.cfp-download {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--navy); color: #fff; border-radius: var(--radius-pill);
+  padding: 8px 16px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  text-decoration: none; margin-top: 8px;
+}
+
+/* ── RADIUS & SHADOW TOKENS ──────────────────────── */
+.token-grid { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
+.radius-demo {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.radius-box { width: 64px; height: 64px; background: var(--bg-light-blue); border: 2px solid var(--navy); }
+.shadow-demo {
+  width: 100px; height: 64px; background: #fff; display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md); font-size: 11px; font-weight: 600; color: var(--text-muted);
+}
+
+/* ── TWO-COL LAYOUT ──────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+/* ── DIVIDER ─────────────────────────────────────── */
+.sg-divider { height: 1px; background: var(--border-light); margin: 20px 0; }
+
+/* ── ANNOTATION ──────────────────────────────────── */
+.note { font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: 12px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-left">
+      <div class="cover-logo">
+        <span class="logo-eu">EU</span><span class="logo-4">4</span><span class="logo-r">R</span>
+      </div>
+      <div class="cover-sub">EU4Reconstruction · Official Website</div>
+      <div class="cover-title">Design System<br>& Styleguide</div>
+    </div>
+    <div class="cover-right">
+      <div class="cover-badge"><span></span> Version 1.0 — March 2026</div>
+      <div class="cover-badge"><span></span> Montserrat · Next.js + Payload</div>
+      <div class="cover-meta">Based on EU4R official brand materials<br>Extracted for development use</div>
+    </div>
+  </div>
+
+  <!-- 1. COLOUR PALETTE -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">1</div>
+      <div class="sg-section-title">Colour Palette</div>
+    </div>
+    <div class="sg-card">
+      <div class="color-group-label">Core Brand</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1B2D6E"></div>
+          <div class="swatch-info"><div class="swatch-name">Navy</div><div class="swatch-hex">#1B2D6E</div><div class="swatch-use">Primary · text · backgrounds · logo</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#F5C318"></div>
+          <div class="swatch-info"><div class="swatch-name">Yellow</div><div class="swatch-hex">#F5C318</div><div class="swatch-use">Accent · badges · Stream 2 · shapes</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#00A3D8"></div>
+          <div class="swatch-info"><div class="swatch-name">Bright Blue</div><div class="swatch-hex">#00A3D8</div><div class="swatch-use">Secondary · charts · decorative</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#C4E8F5"></div>
+          <div class="swatch-info"><div class="swatch-name">Light Blue</div><div class="swatch-hex">#C4E8F5</div><div class="swatch-use">Card backgrounds · CfP · Results</div></div>
+        </div>
+      </div>
+
+      <div class="color-group-label">Tints &amp; Shades</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#141F52"></div>
+          <div class="swatch-info"><div class="swatch-name">Navy Dark</div><div class="swatch-hex">#141F52</div><div class="swatch-use">Hover states · depth</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#2A3F8F"></div>
+          <div class="swatch-info"><div class="swatch-name">Navy Light</div><div class="swatch-hex">#2A3F8F</div><div class="swatch-use">Secondary elements on dark</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#D9A90A"></div>
+          <div class="swatch-info"><div class="swatch-name">Yellow Dark</div><div class="swatch-hex">#D9A90A</div><div class="swatch-use">Yellow hover states</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#FEE27A"></div>
+          <div class="swatch-info"><div class="swatch-name">Yellow Light</div><div class="swatch-hex">#FEE27A</div><div class="swatch-use">Search highlights · subtle tints</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#0081B0"></div>
+          <div class="swatch-info"><div class="swatch-name">Blue Dark</div><div class="swatch-hex">#0081B0</div><div class="swatch-use">Bright blue hover</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1575B5"></div>
+          <div class="swatch-info"><div class="swatch-name">Partner Bar</div><div class="swatch-hex">#1575B5</div><div class="swatch-use">Top accent stripe · partner strip</div></div>
+        </div>
+      </div>
+
+      <div class="color-group-label">Surfaces &amp; Semantic</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#FFFFFF; border:1px solid #E5E7EB"></div>
+          <div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-use">Card surfaces · text on dark</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#EEEEEE"></div>
+          <div class="swatch-info"><div class="swatch-name">Gray</div><div class="swatch-hex">#EEEEEE</div><div class="swatch-use">Map background · neutral areas</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#5A6A8A"></div>
+          <div class="swatch-info"><div class="swatch-name">Muted</div><div class="swatch-hex">#5A6A8A</div><div class="swatch-use">Body text · metadata · captions</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#2E7D32"></div>
+          <div class="swatch-info"><div class="swatch-name">Success</div><div class="swatch-hex">#2E7D32</div><div class="swatch-use">Form success · positive states</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#C62828"></div>
+          <div class="swatch-info"><div class="swatch-name">Error</div><div class="swatch-hex">#C62828</div><div class="swatch-use">Form errors · validation</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. TYPOGRAPHY -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">2</div>
+      <div class="sg-section-title">Typography</div>
+    </div>
+    <div class="sg-card">
+      <div style="margin-bottom:20px; padding:16px 20px; background:var(--bg-light-blue); border-radius:var(--radius-md); display:flex; gap:24px; font-size:13px;">
+        <div><strong style="color:var(--navy)">Typeface</strong><br><span style="color:var(--text-muted)">Montserrat (Google Fonts)</span></div>
+        <div><strong style="color:var(--navy)">Weights used</strong><br><span style="color:var(--text-muted)">400 · 500 · 600 · 700 · 800 · 900</span></div>
+        <div><strong style="color:var(--navy)">Style</strong><br><span style="color:var(--text-muted)">All-caps for headings; sentence case for body</span></div>
+      </div>
+      <div class="type-rows">
+        <div class="type-row">
+          <div class="type-meta">Display<br>--text-display</div>
+          <div class="t-display">EU4R Headline</div>
+          <div class="type-spec">48px / 900 Black<br>uppercase · −.02em</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Heading 1<br>--text-h1</div>
+          <div class="t-h1">Page Title</div>
+          <div class="type-spec">36px / 800 ExtraBold<br>uppercase · −.01em</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Heading 2<br>--text-h2</div>
+          <div class="t-h2">Section Heading</div>
+          <div class="type-spec">28px / 800 ExtraBold<br>uppercase</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Heading 3<br>--text-h3</div>
+          <div class="t-h3">Sub-section Heading</div>
+          <div class="type-spec">22px / 700 Bold</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Heading 4<br>--text-h4</div>
+          <div class="t-h4">Card Title / Label</div>
+          <div class="type-spec">18px / 600 SemiBold</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Body Large<br>--text-body-lg</div>
+          <div class="t-body-lg">Supporting Ukraine's strategic recovery and reconstruction.</div>
+          <div class="type-spec">16px / 400 Regular<br>lh 1.6</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Body<br>--text-body</div>
+          <div class="t-body">EU4Reconstruction strengthens governance, transparency, and institutional capacity across municipalities.</div>
+          <div class="type-spec">15px / 400 Regular<br>lh 1.6</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Small<br>--text-sm</div>
+          <div class="t-sm">Meta text · captions · card excerpts · supporting information</div>
+          <div class="type-spec">14px / 400 Regular<br>color: muted</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">X-Small / Label<br>--text-xs</div>
+          <div class="t-xs">News · Stream 1 · Call for Proposals · Results</div>
+          <div class="type-spec">12px / 700 Bold<br>uppercase · +.08em</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. SPACING -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">3</div>
+      <div class="sg-section-title">Spacing Scale</div>
+    </div>
+    <div class="sg-card">
+      <div class="spacing-grid">
+        <div class="spacing-row"><div class="spacing-bar" style="width:4px"></div><div class="spacing-info"><span class="spacing-token">--space-1</span><span class="spacing-px">4px · 0.25rem</span></div></div>
+        <div class="spacing-row"><div class="spacing-bar" style="width:8px"></div><div class="spacing-info"><span class="spacing-token">--space-2</span><span class="spacing-px">8px · 0.5rem</span></div></div>
+        <div class="spacing-row"><div class="spacing-bar" style="width:12px"></div><div class="spacing-info"><span class="spacing-token">--space-3</span><span class="spacing-px">12px · 0.75rem</span></div></div>
+        <div class="spacing-row"><div class="spacing-bar" style="width:16px"></div><div class="spacing-info"><span class="spacing-token">--space-4</span><span class="spacing-px">16px · 1rem · base padding</span></div></div>
+        <div class="spacing-row"><div class="spacing-bar" style="width:20px"></div><div class="spacing-info"><span class="spacing-token">--space-5</span><span class="spacing-px">20px · 1.25rem</span></div></div>
+        <div class="spacing-row"><div class="spacing-bar" style="width:24px"></div><div class="spacing-info"><span class="spacing-token">--space-6</span><span class="spacing-px">24px · 1.5rem · card padding</span></div></div>
+        <div class="spacing-row"><div class="spacing-bar" style="width:32px"></div><div class="spacing-info"><span class="spacing-token">--space-8</span><span class="spacing-px">32px · 2rem · section gap</span></div></div>
+        <div class="spacing-row"><div class="spacing-bar" style="width:48px"></div><div class="spacing-info"><span class="spacing-token">--space-12</span><span class="spacing-px">48px · 3rem · section padding</span></div></div>
+        <div class="spacing-row"><div class="spacing-bar" style="width:64px"></div><div class="spacing-info"><span class="spacing-token">--space-16</span><span class="spacing-px">64px · 4rem · large sections</span></div></div>
+        <div class="spacing-row"><div class="spacing-bar" style="width:96px"></div><div class="spacing-info"><span class="spacing-token">--space-24</span><span class="spacing-px">96px · 6rem · hero / page top</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. BADGES -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">4</div>
+      <div class="sg-section-title">Badges &amp; Tags</div>
+    </div>
+    <div class="sg-card">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">On Light Background</div>
+      <div class="badge-grid">
+        <span class="badge badge--yellow">Stream 2 Team</span>
+        <span class="badge badge--outline">Stream 1 Team</span>
+        <span class="badge badge--navy">Last Call 🔔</span>
+        <span class="badge badge--blue">Results 📢</span>
+        <span class="badge badge--stream-1">Stream 1</span>
+        <span class="badge badge--stream-2">Stream 2</span>
+        <span class="badge badge--yellow">We Are Hiring 📣</span>
+        <span class="badge badge--outline">Call for Proposals</span>
+      </div>
+      <div style="margin-top:20px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">On Dark Background</div>
+        <div class="badge-dark-bg">
+          <span class="badge badge--yellow">Stream 2 Team</span>
+          <span class="badge badge--outline-white">Stream 1 Team</span>
+          <span class="badge" style="background:rgba(255,255,255,.12);color:#fff;border-color:transparent;">Results</span>
+        </div>
+      </div>
+      <p class="note">Border-radius: 9999px (fully rounded pill) · Font: Montserrat 700 · Uppercase · Letter-spacing: 0.08em</p>
+    </div>
+  </div>
+
+  <!-- 5. BUTTONS -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">5</div>
+      <div class="sg-section-title">Buttons</div>
+    </div>
+    <div class="sg-card">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;">Variants</div>
+      <div class="btn-grid">
+        <button class="btn btn--primary">Primary</button>
+        <button class="btn btn--accent">Accent</button>
+        <button class="btn btn--outline">Outline</button>
+        <button class="btn btn--blue">Blue</button>
+      </div>
+      <div style="margin-top:16px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;">Sizes</div>
+        <div class="btn-grid" style="align-items:center">
+          <button class="btn btn--primary btn--sm">Small</button>
+          <button class="btn btn--primary">Default</button>
+          <button class="btn btn--primary btn--lg">Large</button>
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;">On Dark Background</div>
+        <div class="btn-dark-bg">
+          <button class="btn btn--accent">Apply Now</button>
+          <button class="btn btn--ghost">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. CARDS -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">6</div>
+      <div class="sg-section-title">Cards</div>
+    </div>
+    <div class="sg-card">
+      <div class="card-grid">
+        <!-- News card -->
+        <div class="card">
+          <div class="card__img">📰</div>
+          <div class="card__body">
+            <div class="card__meta">News · March 2026</div>
+            <div class="card__title">EU4R Launches First Round of Grants</div>
+            <div class="card__excerpt">EU4Reconstruction announces support for 12 municipalities across Ukraine's recovery programme.</div>
+          </div>
+          <div class="card__footer">
+            <span class="badge badge--stream-1" style="font-size:10px;padding:4px 10px;">Stream 1</span>
+            <span style="font-size:11px;color:var(--blue-bright);font-weight:700;cursor:pointer;">Read more →</span>
+          </div>
+        </div>
+        <!-- Light blue card (CfP / Results) -->
+        <div class="card card--light-blue">
+          <div class="card__img card__img--yellow">📋</div>
+          <div class="card__body">
+            <div class="card__meta" style="color:var(--navy);">Call for Proposals</div>
+            <div class="card__title">Selection of Municipal Partners</div>
+            <div class="card__excerpt">Applications open for municipalities seeking capacity building support under Stream 2.</div>
+          </div>
+          <div class="card__footer" style="border-color:rgba(27,45,110,.12);">
+            <span class="badge badge--stream-2" style="font-size:10px;padding:4px 10px;">Stream 2</span>
+            <span style="font-size:11px;color:var(--navy);font-weight:700;cursor:pointer;">View details →</span>
+          </div>
+        </div>
+        <!-- Dark card -->
+        <div class="card card--dark">
+          <div class="card__img card__img--blue">🏙️</div>
+          <div class="card__body">
+            <div class="card__meta">Results</div>
+            <div class="card__title">Governance Reform Progress</div>
+            <div class="card__excerpt">Institutional capacity outcomes from Q1 2026 activities across target municipalities.</div>
+          </div>
+          <div class="card__footer">
+            <span class="badge badge--outline-white" style="font-size:10px;padding:4px 10px;">Stream 1 + 2</span>
+            <span style="font-size:11px;color:var(--yellow);font-weight:700;cursor:pointer;">View →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. STREAM DIFFERENTIATION -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">7</div>
+      <div class="sg-section-title">Stream Differentiation</div>
+    </div>
+    <div class="sg-card">
+      <div class="stream-grid">
+        <div class="stream-block">
+          <div class="stream-accent stream-accent--1"></div>
+          <div class="stream-name">Stream 1</div>
+          <div class="stream-title">Reconstruction Governance &amp; Municipal Support</div>
+          <div class="stream-orgs">GIZ (Lead) · Expertise France (Partner)</div>
+          <div style="margin-top:12px;display:flex;gap:8px;">
+            <span class="badge badge--stream-1" style="font-size:10px;padding:4px 12px;">Stream 1 Team</span>
+          </div>
+        </div>
+        <div class="stream-block stream-block--2">
+          <div class="stream-accent stream-accent--2"></div>
+          <div class="stream-name">Stream 2</div>
+          <div class="stream-title">Institutional Strengthening of SARDI &amp; Municipalities</div>
+          <div class="stream-orgs">Denmark MFA (Lead) · CPVA (Partner)</div>
+          <div style="margin-top:12px;display:flex;gap:8px;">
+            <span class="badge badge--stream-2" style="font-size:10px;padding:4px 12px;">Stream 2 Team</span>
+          </div>
+        </div>
+      </div>
+      <p class="note">Stream 1 uses a navy left-border accent. Stream 2 uses a yellow left-border accent. Both share the same card layout and typography — only the colour accent and badge variant change.</p>
+    </div>
+  </div>
+
+  <!-- 8. NAVIGATION -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">8</div>
+      <div class="sg-section-title">Navigation</div>
+    </div>
+    <div class="sg-card">
+      <div class="nav-demo">
+        <div class="nav-logo">
+          <span>EU</span><span>4</span><span>R</span>
+        </div>
+        <ul class="nav-links">
+          <li><a class="nav-link active" href="#">The Project</a></li>
+          <li><a class="nav-link" href="#">Team</a></li>
+          <li><a class="nav-link" href="#">News</a></li>
+          <li><a class="nav-link" href="#">Results</a></li>
+          <li><a class="nav-link" href="#">Call for Proposals</a></li>
+          <li><a class="nav-link" href="#">Contacts</a></li>
+        </ul>
+        <div class="nav-util">
+          <div class="lang">
+            <button class="lang-btn active">EN</button>
+            <button class="lang-btn">UA</button>
+          </div>
+          <div style="cursor:pointer;color:var(--navy);font-size:16px;">🔍</div>
+        </div>
+      </div>
+      <p class="note">Bottom border: 3px solid #F5C318 · Active item: yellow underline · Language toggle: navy fill for active · Sticky on scroll</p>
+    </div>
+  </div>
+
+  <!-- 9. FORM -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">9</div>
+      <div class="sg-section-title">Form States</div>
+    </div>
+    <div class="sg-card">
+      <div class="two-col">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;">Default &amp; Focus &amp; Error States</div>
+          <div class="form-demo">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input class="form-input" type="text" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input class="form-input focus" type="email" value="contact@example.com">
+              <span style="font-size:10px;color:var(--text-muted);">↑ Focus state</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input class="form-input error" type="email" value="invalid-email">
+              <span class="form-error">Please enter a valid email address</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message *</label>
+              <textarea class="form-textarea" placeholder="Your message…"></textarea>
+            </div>
+            <button class="btn btn--primary">Send Message</button>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;">Success State</div>
+          <div class="form-success">✓ Thank you for your message. We will get back to you shortly.</div>
+          <div style="margin-top:12px;">
+            <button class="btn btn--outline btn--sm">Send another message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. SEARCH RESULTS -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">10</div>
+      <div class="sg-section-title">Search Results</div>
+    </div>
+    <div class="sg-card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:10px 14px;background:var(--bg-light-blue);border-radius:var(--radius-md);">
+        <span style="font-size:16px;">🔍</span>
+        <span style="font-size:14px;font-weight:600;color:var(--navy);">reconstruction governance</span>
+        <span style="font-size:12px;color:var(--text-muted);margin-left:auto;">3 results</span>
+      </div>
+      <div class="search-results">
+        <div class="search-result">
+          <div class="sr-type">News</div>
+          <div class="sr-title">EU4R Advances <mark>Reconstruction Governance</mark> Framework</div>
+          <div class="sr-url">eu4reconstruction.org › news › reconstruction-governance-framework</div>
+          <div class="sr-excerpt">The EU4Reconstruction team presented a new <mark>governance</mark> framework for post-war <mark>reconstruction</mark> at a workshop attended by 14 municipalities…</div>
+        </div>
+        <div class="search-result">
+          <div class="sr-type">Results</div>
+          <div class="sr-title">Q1 2026 Progress: Municipal <mark>Governance</mark> Strengthening</div>
+          <div class="sr-url">eu4reconstruction.org › results › q1-2026-governance</div>
+          <div class="sr-excerpt">Summary of capacity building activities under Stream 1, focusing on public investment management and <mark>reconstruction</mark> coordination across local authorities.</div>
+        </div>
+        <div class="search-result">
+          <div class="sr-type">Page</div>
+          <div class="sr-title">The Project — Key Areas</div>
+          <div class="sr-url">eu4reconstruction.org › the-project#key-areas</div>
+          <div class="sr-excerpt">One of the core focus areas is strengthening <mark>governance</mark> for sustainable <mark>reconstruction</mark>, including reform of the construction sector and municipal financial management.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. CfP STATES -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">11</div>
+      <div class="sg-section-title">Call for Proposals — Page States</div>
+    </div>
+    <div class="sg-card">
+      <div class="cfp-grid">
+        <div class="cfp-active">
+          <div class="cfp-state-label">Active State</div>
+          <span class="badge badge--navy" style="font-size:11px;">🔔 Open Call</span>
+          <div style="font-size:20px;font-weight:900;text-transform:uppercase;color:var(--navy);margin:12px 0 4px;line-height:1.1;">Selection of Training Providers for Municipalities</div>
+          <div class="cfp-deadline">
+            <span class="cfp-deadline-icon">⏱</span>
+            <span class="cfp-deadline-text">Deadline: 06.02.2026 · 18:00</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:12px;">Applications are invited from qualified training organisations with experience in municipal governance, supervisory boards, and corporate accountability.</div>
+          <a href="#" class="cfp-download">⬇ Download Guidelines (PDF)</a>
+        </div>
+        <div class="cfp-empty-demo">
+          <div class="cfp-state-label">Empty State</div>
+          <div style="font-size:40px;">📭</div>
+          <div style="font-size:18px;font-weight:800;text-transform:uppercase;color:var(--navy);line-height:1.2;">No Active Calls at This Time</div>
+          <div style="font-size:12px;color:var(--text-muted);max-width:260px;line-height:1.6;">Please check back soon or contact us for information about upcoming grant opportunities.</div>
+          <button class="btn btn--outline btn--sm" style="margin-top:4px;">Contact Us</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. COOKIE BANNER -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">12</div>
+      <div class="sg-section-title">Cookie Consent Banner</div>
+    </div>
+    <div class="sg-card">
+      <div class="cookie-demo">
+        <div class="cookie-icon">🍪</div>
+        <div class="cookie-text"><strong>We use cookies</strong><br>We use analytics cookies to understand how visitors use our site. These are only set after you give consent. For more information, see our <u>Cookie Policy</u>.</div>
+        <div class="cookie-actions">
+          <button class="btn btn--accent btn--sm">Accept All</button>
+          <button class="btn btn--ghost btn--sm">Manage Preferences</button>
+        </div>
+      </div>
+      <p class="note">Fixed to bottom of viewport · max-width 640px · Background: --color-navy · Stacks vertically on mobile</p>
+    </div>
+  </div>
+
+  <!-- 13. FOOTER -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">13</div>
+      <div class="sg-section-title">Footer</div>
+    </div>
+    <div class="sg-card" style="padding:0;overflow:hidden;">
+      <div class="footer-demo">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo"><span>EU</span><span>4</span><span>R</span></div>
+            <div class="footer-tagline">EU4Reconstruction supports Ukraine's strategic, inclusive, and EU-aligned recovery and reconstruction.</div>
+            <div class="footer-social" style="margin-top:16px;">
+              <div class="social-btn">in</div>
+              <div class="social-btn">f</div>
+            </div>
+          </div>
+          <div>
+            <div class="footer-col-title">Navigation</div>
+            <a class="footer-link">The Project</a>
+            <a class="footer-link">Team</a>
+            <a class="footer-link">News</a>
+            <a class="footer-link">Results</a>
+            <a class="footer-link">Call for Proposals</a>
+            <a class="footer-link">Contacts</a>
+          </div>
+          <div>
+            <div class="footer-col-title">Legal</div>
+            <a class="footer-link">Privacy Policy</a>
+            <a class="footer-link">Cookie Policy</a>
+            <a class="footer-link">Accessibility</a>
+          </div>
+          <div>
+            <div class="footer-col-title">Partners</div>
+            <a class="footer-link">European Union</a>
+            <a class="footer-link">GIZ</a>
+            <a class="footer-link">Expertise France</a>
+            <a class="footer-link">Denmark MFA</a>
+            <a class="footer-link">CPVA</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">© 2026 EU4Reconstruction. Co-funded by the European Union.</div>
+          <div class="footer-copy">Implemented by GIZ, Expertise France, Denmark MFA, CPVA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14. BORDER RADIUS + SHADOWS -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">14</div>
+      <div class="sg-section-title">Border Radius &amp; Shadows</div>
+    </div>
+    <div class="sg-card">
+      <div class="two-col">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;">Border Radius</div>
+          <div class="token-grid">
+            <div class="radius-demo">
+              <div class="radius-box" style="border-radius:4px;"></div>
+              <div class="sg-label">--radius-sm</div>
+              <div class="sg-value">4px</div>
+            </div>
+            <div class="radius-demo">
+              <div class="radius-box" style="border-radius:8px;"></div>
+              <div class="sg-label">--radius-md</div>
+              <div class="sg-value">8px</div>
+            </div>
+            <div class="radius-demo">
+              <div class="radius-box" style="border-radius:12px;"></div>
+              <div class="sg-label">--radius-lg</div>
+              <div class="sg-value">12px</div>
+            </div>
+            <div class="radius-demo">
+              <div class="radius-box" style="border-radius:16px;"></div>
+              <div class="sg-label">--radius-xl</div>
+              <div class="sg-value">16px</div>
+            </div>
+            <div class="radius-demo">
+              <div class="radius-box" style="border-radius:9999px;width:80px;height:36px;"></div>
+              <div class="sg-label">--radius-pill</div>
+              <div class="sg-value">9999px</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;">Shadows</div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div class="shadow-demo" style="box-shadow:0 1px 3px rgba(27,45,110,.08)">sm</div>
+              <div class="sg-value">--shadow-sm · 0 1px 3px rgba(27,45,110,.08)</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div class="shadow-demo" style="box-shadow:0 2px 8px rgba(27,45,110,.10)">card</div>
+              <div class="sg-value">--shadow-card · 0 2px 8px rgba(27,45,110,.10)</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div class="shadow-demo" style="box-shadow:0 4px 12px rgba(27,45,110,.12)">md</div>
+              <div class="sg-value">--shadow-md · 0 4px 12px rgba(27,45,110,.12)</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div class="shadow-demo" style="box-shadow:0 8px 24px rgba(27,45,110,.16)">lg</div>
+              <div class="sg-value">--shadow-lg · 0 8px 24px rgba(27,45,110,.16)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15. PARTNER STRIP -->
+  <div class="sg-section">
+    <div class="sg-section-header">
+      <div class="sg-section-number">15</div>
+      <div class="sg-section-title">Partner Logo Strip</div>
+    </div>
+    <div class="sg-card">
+      <div class="partner-strip">
+        <div class="partner-logo">🇪🇺 Co-funded by EU</div>
+        <div class="partner-logo">🇩🇰 Denmark MFA</div>
+        <div class="partner-logo">🇩🇪 GIZ</div>
+        <div class="partner-logo">🇫🇷 France · Expertise France</div>
+        <div class="partner-logo">🇱🇹 Lithuania MFA</div>
+        <div class="partner-logo">Agency for Restoration</div>
+        <div class="partner-logo">Ministry · Communities Ukraine</div>
+      </div>
+      <p class="note">Top border: 4px solid #1575B5 · Partner logos at 28px height · Horizontal scroll on mobile</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

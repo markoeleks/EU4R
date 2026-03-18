@@ -1,0 +1,126 @@
+/* ============================================================
+   FORM ENHANCEMENTS
+   ============================================================ */
+
+/* Select */
+.form-select {
+  width            : 100%;
+  padding          : var(--space-3) var(--space-4);
+  border           : 2px solid var(--color-border-light);
+  border-radius    : var(--radius-md);
+  font-family      : var(--font-body);
+  font-size        : var(--text-body);
+  color            : var(--color-text-primary);
+  background-color : var(--color-bg-white);
+  background-image : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%231B2D6E' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat  : no-repeat;
+  background-position: right var(--space-4) center;
+  padding-right    : var(--space-10);
+  appearance       : none;
+  cursor           : pointer;
+  transition       : border-color var(--transition-fast);
+}
+
+.form-select:focus {
+  outline      : 3px solid var(--color-focus);
+  outline-offset: 2px;
+  border-color : var(--color-navy);
+}
+
+/* Textarea */
+.form-textarea {
+  resize     : vertical;
+  min-height : 140px;
+}
+
+/* Input group (icon + input) */
+.input-group {
+  position : relative;
+}
+
+.input-group__icon {
+  position    : absolute;
+  left        : var(--space-4);
+  top         : 50%;
+  transform   : translateY(-50%);
+  color       : var(--color-text-muted);
+  font-size   : 1rem;
+  pointer-events: none;
+}
+
+.input-group .form-input {
+  padding-left : var(--space-10);
+}
+
+/* Inline form row */
+.form-row {
+  display   : flex;
+  gap       : var(--space-4);
+  flex-wrap : wrap;
+}
+
+.form-row .form-group {
+  flex : 1 1 200px;
+}
+
+/* Required asterisk */
+.form-label .required {
+  color       : var(--color-error);
+  margin-left : var(--space-1);
+}
+
+/* Hint text */
+.form-hint {
+  font-size   : var(--text-xs);
+  color       : var(--color-text-muted);
+  margin-top  : var(--space-1);
+  line-height : var(--lh-normal);
+}
+
+/* Success / error states */
+.form-group--success .form-input {
+  border-color : var(--color-success);
+}
+
+.form-group--error .form-input {
+  border-color : var(--color-error);
+}
+
+.form-error-msg {
+  font-size   : var(--text-xs);
+  color       : var(--color-error);
+  margin-top  : var(--space-1);
+  font-weight : var(--fw-medium);
+}
+
+/* Submit row */
+.form-submit {
+  display     : flex;
+  align-items : center;
+  gap         : var(--space-4);
+  margin-top  : var(--space-2);
+  flex-wrap   : wrap;
+}
+
+/* Newsletter inline form */
+.newsletter-form {
+  display   : flex;
+  gap       : var(--space-3);
+  flex-wrap : wrap;
+}
+
+.newsletter-form .form-input {
+  flex : 1 1 240px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color    : rgba(255, 255, 255, 0.3);
+  color           : var(--color-text-white);
+}
+
+.newsletter-form .form-input::placeholder {
+  color : rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-form .form-input:focus {
+  border-color     : var(--color-yellow);
+  background-color : rgba(255, 255, 255, 0.15);
+}

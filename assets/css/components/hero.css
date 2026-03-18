@@ -1,0 +1,78 @@
+/* ============================================================
+   HERO OVERRIDES & VARIANTS
+   ============================================================ */
+
+/* Sub-page hero (compact) */
+.hero--sub {
+  padding      : var(--space-20) 0 var(--space-14);
+  min-height   : unset;
+}
+
+.hero--sub .hero__content {
+  max-width : var(--container-content);
+}
+
+/* Full-bleed home hero */
+.hero--home {
+  padding      : var(--space-24) 0 var(--space-20);
+  min-height   : 600px;
+  position     : relative;
+  overflow     : hidden;
+}
+
+.hero__meta {
+  display     : flex;
+  align-items : center;
+  gap         : var(--space-3);
+  margin-bottom: var(--space-5);
+  flex-wrap   : wrap;
+}
+
+.hero__actions {
+  display   : flex;
+  gap       : var(--space-4);
+  flex-wrap : wrap;
+  margin-top: var(--space-8);
+}
+
+.hero__image-wrap {
+  position     : relative;
+  border-radius: var(--radius-xl);
+  overflow     : hidden;
+  box-shadow   : var(--shadow-lg);
+}
+
+.hero__image-wrap img {
+  width      : 100%;
+  height     : 100%;
+  object-fit : cover;
+}
+
+/* Two-column layout */
+.hero__split {
+  display               : grid;
+  grid-template-columns : 1fr 1fr;
+  gap                   : var(--space-16);
+  align-items           : center;
+}
+
+@media (max-width: 1024px) {
+  .hero__split {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__image-wrap {
+    aspect-ratio: 16 / 7;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero--home {
+    padding   : var(--space-14) 0 var(--space-12);
+    min-height: auto;
+  }
+
+  .hero--sub {
+    padding: var(--space-12) 0 var(--space-10);
+  }
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#E8EDF7"/>
+  <rect x="0" y="0" width="800" height="4" fill="#1B2D6E"/>
+  <circle cx="400" cy="210" r="48" fill="#CBD5E8"/>
+  <path d="M376 210 L400 178 L424 210 Z" fill="#9EB0D4"/>
+  <rect x="352" y="210" width="96" height="68" rx="4" fill="#9EB0D4"/>
+  <rect x="376" y="230" width="28" height="32" rx="2" fill="#CBD5E8"/>
+  <text x="400" y="300" font-family="Montserrat, sans-serif" font-size="14" font-weight="600" fill="#6B7A9F" text-anchor="middle" dominant-baseline="middle">EU4Reconstruction</text>
+  <text x="400" y="320" font-family="Montserrat, sans-serif" font-size="11" fill="#9EB0D4" text-anchor="middle" dominant-baseline="middle">Image placeholder</text>
+</svg>

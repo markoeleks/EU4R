@@ -1,0 +1,81 @@
+/* ============================================================
+   BADGE VARIANTS
+   ============================================================ */
+
+/* Status badges */
+.badge--open {
+  background-color : var(--color-success-light, #d1fae5);
+  color            : var(--color-success, #065f46);
+}
+
+.badge--closed {
+  background-color : #fee2e2;
+  color            : #991b1b;
+}
+
+.badge--upcoming {
+  background-color : #fef3c7;
+  color            : #92400e;
+}
+
+.badge--ongoing {
+  background-color : #dbeafe;
+  color            : #1e40af;
+}
+
+/* Stream colour badges */
+.badge--stream-1 {
+  background-color : var(--color-stream-1-light);
+  color            : var(--color-stream-1);
+}
+
+.badge--stream-2 {
+  background-color : var(--color-stream-2-light);
+  color            : var(--color-stream-2);
+}
+
+.badge--stream-3 {
+  background-color : var(--color-stream-3-light);
+  color            : var(--color-stream-3);
+}
+
+.badge--stream-4 {
+  background-color : var(--color-stream-4-light);
+  color            : var(--color-stream-4);
+}
+
+/* Category badges */
+.badge--news {
+  background-color : #dbeafe;
+  color            : #1e40af;
+}
+
+.badge--event {
+  background-color : #ede9fe;
+  color            : #5b21b6;
+}
+
+.badge--grant {
+  background-color : #d1fae5;
+  color            : #065f46;
+}
+
+/* Country */
+.badge--country {
+  background-color : var(--color-bg-gray);
+  color            : var(--color-text-primary);
+  font-weight      : var(--fw-medium);
+}
+
+/* Large badge (for hero) */
+.badge--lg {
+  padding   : var(--space-2) var(--space-5);
+  font-size : var(--text-sm);
+}
+
+/* Pill shape (already in DS, this overrides size only) */
+.badge--pill-sm {
+  border-radius : var(--radius-pill);
+  font-size     : 0.625rem;
+  padding       : 2px var(--space-3);
+}
